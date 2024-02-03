@@ -1,8 +1,7 @@
-// post.service.ts
-
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environment/enviroments';
+import { Observable, catchError, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Post } from '../models/post.interface';
 
@@ -10,15 +9,19 @@ import { Post } from '../models/post.interface';
   providedIn: 'root',
 })
 export class PostService {
-  private apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<any[]> {
     return this.http.get<Post[]>(this.apiUrl)
       .pipe(
-        // Modify the response if needed
-        map(posts => posts.map(post => ({ ...post})))
+        (map(posts => posts.map(post => ({ ...post})))),
+        (catchError((error) => {
+          // Handle the error and optionally log it
+          console.error('API Error:', error);
+          return throwError(() => error);
+        }))
       );
   }
 }

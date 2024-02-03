@@ -1,4 +1,22 @@
 <h1 class="text-3xl font-bold underline">
-  Hello world!
+  <ng-container
+    *ngIf="{
+        posts: posts$ | async,
+        isLoading: isLoading$ | async
+    } as data"
+>
+    <div class="container">
+        <table>
+            <th>ID</th>
+            <th>Title</th>
+            <tbody>
+            <tr *ngFor="let post of data.posts">
+                <td>{{post.id}}</td>
+                <td>{{post.title}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
   <app-post-grid></app-post-grid>
 </h1>
