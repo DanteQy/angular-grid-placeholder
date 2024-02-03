@@ -13,15 +13,14 @@ export class PostService {
 
   constructor(private http: HttpClient) {}
 
-  getPosts(): Observable<any[]> {
-    return this.http.get<Post[]>(this.apiUrl)
-      .pipe(
-        (map(posts => posts.map(post => ({ ...post})))),
-        (catchError((error) => {
-          // Handle the error and optionally log it
-          console.error('API Error:', error);
-          return throwError(() => error);
-        }))
-      );
+  getPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.apiUrl).pipe(
+      map((posts) => posts.map((post) => ({ ...post }))),
+      catchError((error) => {
+        // Handle the error and optionally log it
+        console.error('API Error:', error);
+        return throwError(() => error);
+      })
+    );
   }
 }

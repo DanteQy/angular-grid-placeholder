@@ -1,1 +1,3 @@
-<p>post-grid works!<app-post></app-post></p>
+<div class="grid grid-cols-10 gap-4">
+  <app-post *ngFor="let post of posts$ | async" [post]="post"></app-post>
+</div>
