@@ -37,8 +37,7 @@ export class AppComponent implements OnInit {
 }
 
 private initSubscriptions(): void {
-    this.posts$ = this.store.pipe(select(selectPostsList));    
-    console.log(this.posts$);
+    this.posts$ = this.store.pipe(select(selectPostsList));   
     
     this.isLoading$ = this.store.pipe(select(selectPostIsLoading));
 }

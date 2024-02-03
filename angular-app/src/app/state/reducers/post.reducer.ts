@@ -18,6 +18,8 @@ const reducer = createReducer<PostState>(
         };
     }),
     on(getPostsSuccess, (state, { posts }) => {
+
+        console.log('llllll ', posts);
         return {
             ...state,
             isLoading: false,
