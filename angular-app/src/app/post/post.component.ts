@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { Post } from '../models/post.interface';
 import { Store, select } from '@ngrx/store';
 import { setData } from '../state/actions/post.action';
@@ -20,25 +20,24 @@ export class PostComponent {
 
   currentPropertyIndex: number = 0;
 
-  constructor(private store: Store<{ selectedPostId: number }>) {}
+  constructor(
+    private store: Store<{ selectedPostId: number }>,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.setDisplayContent();
   }
 
-  
-
   toggleContent() {
-    if(this.post) {
+    if (this.post) {
       this.store.dispatch(setData({ selectedPostId: this.post.id }));
 
       this.selectedPostId$ = this.store.pipe(select('selectedPostId'));
-      this.currentPropertyIndex = (this.currentPropertyIndex + 1) % this.propertyRotation.length;
+      this.currentPropertyIndex =
+        (this.currentPropertyIndex + 1) % this.propertyRotation.length;
       this.setDisplayContent();
-
     }
-
-    console.log('toggleContent if ', this.displayContent);
   }
 
   setDisplayContent() {
@@ -49,7 +48,9 @@ export class PostComponent {
     }
   }
 
-  selectPostOnClick() {
-    // this.store.dispatch(selectSelectedPostId(this.post?.id));
+  resetToDefault(): void {    
+    this.currentPropertyIndex = 0;
+    this.setDisplayContent();
+    this.cdr.detectChanges();
   }
 }

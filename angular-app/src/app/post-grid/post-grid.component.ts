@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, QueryList, ViewChildren } from '@angular/core';
 import { PostComponent } from '../post/post.component';
 import { CommonModule } from '@angular/common';
 import { Store, select } from '@ngrx/store';
@@ -17,16 +17,34 @@ import {
   styleUrl: './post-grid.component.css',
 })
 export class PostGridComponent {
+  @ViewChildren(PostComponent) postComponents!: QueryList<PostComponent>;
   posts$!: Observable<Post[]>;
   isLoading$!: Observable<boolean>;
+  private previousPostId: number | null = null;
 
-  constructor(private readonly store: Store) {}
+  constructor(private readonly store: Store, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.posts$ = this.store.pipe(select(selectPostsList));
     this.isLoading$ = this.store.pipe(select(selectPostIsLoading));
+  }
 
-    console.log(this.posts$ );
+  resetPreviousPost(e: Event, postId: number): void {
+    e.preventDefault();
+    // Find the PostComponent for the previous post
+    const previousPostComponent = this.postComponents.find(
+      (component) => component.post?.id === this.previousPostId
+    );
     
+    // Reset the previous post if found
+    if (previousPostComponent && (this.previousPostId !== postId)) {
+      previousPostComponent.resetToDefault();
+      this.cdr.detectChanges();
+      this.cdr.markForCheck();
+    }
+
+    // Update the previous post ID with the current post ID
+    this.previousPostId = postId;
+
   }
 }
