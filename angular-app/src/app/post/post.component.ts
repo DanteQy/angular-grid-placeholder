@@ -33,11 +33,11 @@ export class PostComponent {
       this.store.dispatch(setData({ selectedPostId: this.post.id }));
 
       this.selectedPostId$ = this.store.pipe(select('selectedPostId'));
-      // this.selectedPostId$ = this.store.select('selectedPostId');
-      console.log('this.selectedPostId$ ', this.selectedPostId$ );
+      this.currentPropertyIndex = (this.currentPropertyIndex + 1) % this.propertyRotation.length;
+      this.setDisplayContent();
+
     }
-    this.setDisplayContent();
-    this.currentPropertyIndex = (this.currentPropertyIndex + 1) % this.propertyRotation.length;
+
     console.log('toggleContent if ', this.displayContent);
   }
 
