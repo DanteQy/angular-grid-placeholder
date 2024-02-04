@@ -25,5 +25,8 @@ export class PostGridComponent {
   ngOnInit() {
     this.posts$ = this.store.pipe(select(selectPostsList));
     this.isLoading$ = this.store.pipe(select(selectPostIsLoading));
+
+    console.log(this.posts$ );
+    
   }
 }

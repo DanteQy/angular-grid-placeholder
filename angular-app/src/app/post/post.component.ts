@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Post } from '../models/post.interface';
+import { Store, select } from '@ngrx/store';
+import { setData } from '../state/actions/post.action';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -10,19 +13,29 @@ import { Post } from '../models/post.interface';
 })
 export class PostComponent {
   @Input() post!: Post | undefined;
+  selectedPostId$!: Observable<number>;
 
   displayContent: string = '';
   propertyRotation: string[] = ['title', 'userId', 'id', 'body'];
 
   currentPropertyIndex: number = 0;
 
-  constructor() {}
+  constructor(private store: Store<{ selectedPostId: number }>) {}
 
   ngOnInit() {
     this.setDisplayContent();
   }
 
+  
+
   toggleContent() {
+    if(this.post) {
+      this.store.dispatch(setData({ selectedPostId: this.post.id }));
+
+      this.selectedPostId$ = this.store.pipe(select('selectedPostId'));
+      // this.selectedPostId$ = this.store.select('selectedPostId');
+      console.log('this.selectedPostId$ ', this.selectedPostId$ );
+    }
     this.setDisplayContent();
     this.currentPropertyIndex = (this.currentPropertyIndex + 1) % this.propertyRotation.length;
     console.log('toggleContent if ', this.displayContent);
@@ -34,5 +47,9 @@ export class PostComponent {
       this.displayContent =
         `${this.post[currentProperty]}` || `No ${currentProperty}`;
     }
+  }
+
+  selectPostOnClick() {
+    // this.store.dispatch(selectSelectedPostId(this.post?.id));
   }
 }

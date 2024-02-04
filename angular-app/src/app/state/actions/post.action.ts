@@ -10,4 +10,4 @@ export const getPostsSuccess = createAction(
         posts: Post[];
     }>()
 );
-
+export const setData = createAction(`${prefix} Set Post ID`, props<{ selectedPostId: number }>());

@@ -1,12 +1,13 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import { PostState } from '../post.state';
-import { getPosts, getPostsSuccess } from '../actions/post.action';
+import { getPosts, getPostsSuccess, setData } from '../actions/post.action';
 
 
 export const initialPostsState: PostState = {
     posts: [],
-    isLoading: false
+    isLoading: false,
+    selectedPostId: -1
 };
 
 const reducer = createReducer<PostState>(
@@ -18,14 +19,13 @@ const reducer = createReducer<PostState>(
         };
     }),
     on(getPostsSuccess, (state, { posts }) => {
-
-        console.log('llllll ', posts);
         return {
             ...state,
             isLoading: false,
             posts
         };
-    })
+    }),
+    on(setData, (state, { selectedPostId }) => ({ ...state, selectedPostId }))
 );
 
 export function postsReducer(state = initialPostsState, actions: Action): PostState {
