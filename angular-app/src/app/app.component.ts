@@ -7,8 +7,7 @@ import { Store, select } from '@ngrx/store';
 import { PostGridComponent } from './post-grid/post-grid.component';
 import { HeaderComponent } from './header/header.component';
 import {
-  selectPostsList,
-  selectPostIsLoading,
+  selectPostsList
 } from './state/selector/post.selector';
 import { getPosts } from './state/actions/post.action';
 
@@ -22,7 +21,6 @@ import { getPosts } from './state/actions/post.action';
 export class AppComponent implements OnInit {
   title = 'angular-app';
   posts$!: Observable<Post[]>;
-  isLoading$!: Observable<boolean>;
 
   constructor(private readonly store: Store) {}
 
@@ -37,6 +35,5 @@ export class AppComponent implements OnInit {
 
   private initSubscriptions(): void {
     this.posts$ = this.store.pipe(select(selectPostsList));
-    this.isLoading$ = this.store.pipe(select(selectPostIsLoading));
   }
 }

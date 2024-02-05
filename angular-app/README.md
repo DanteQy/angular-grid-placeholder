@@ -37,6 +37,9 @@ Regarding the style I mainly followed the requirement of having a 10x10 grid whi
 
 I also decided that when a text is too long it just overflows so you can scroll within the square instead of having ellipses.
 
+* the loading part is missing, I made an addition to the store but halfway I didn't add the loading just for the spinner(thre might be lefotvers in the code)
+* I started working on tests with angular but I don't have experience with Jasmine so I'd rather avoid getting stuck on something that might take too long(it would be something I'd have an easier time learning with some examples)
+
 ## Questions
   * We use JWTs a lot throughout our API. For instance, when a user logs in on our API, a JWT is issued and our web-application uses this token for every request for authentication. Here's an example of such a token:
 Why is it (or isn't it) safe to use this? (hint: the token is one string, the pdf might breaks it into multiple lines)

@@ -5,8 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { Post } from '../models/post.interface';
 import {
-  selectPostsList,
-  selectPostIsLoading,
+  selectPostsList
 } from '../state/selector/post.selector';
 
 @Component({
@@ -19,14 +18,12 @@ import {
 export class PostGridComponent implements OnInit{
   @ViewChildren(PostComponent) postComponents!: QueryList<PostComponent>;
   posts$!: Observable<Post[]>;
-  isLoading$!: Observable<boolean>;
   private previousPostId: number | null = null;
 
   constructor(private readonly store: Store, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.posts$ = this.store.pipe(select(selectPostsList));
-    this.isLoading$ = this.store.pipe(select(selectPostIsLoading));
   }
 
   resetPreviousPost(e: Event, postId: number): void {

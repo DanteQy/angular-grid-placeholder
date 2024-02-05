@@ -5,7 +5,6 @@ import { getPosts, getPostsSuccess, setData } from '../actions/post.action';
 
 export const initialPostsState: PostState = {
     posts: [],
-    isLoading: false,
     selectedPostId: -1
 };
 
@@ -13,14 +12,12 @@ const reducer = createReducer<PostState>(
     initialPostsState,
     on(getPosts, (state) => {
         return {
-            ...state,
-            isLoading: true
+            ...state
         };
     }),
     on(getPostsSuccess, (state, { posts }) => {
         return {
             ...state,
-            isLoading: false,
             posts
         };
     }),

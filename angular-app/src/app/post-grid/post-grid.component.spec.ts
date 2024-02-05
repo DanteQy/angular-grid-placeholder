@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PostGridComponent } from './post-grid.component';
+import { StoreModule } from '@ngrx/store';
 
 describe('PostGridComponent', () => {
   let component: PostGridComponent;
@@ -8,7 +9,7 @@ describe('PostGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PostGridComponent]
+      imports: [PostGridComponent, StoreModule.forRoot({})]
     })
     .compileComponents();
     
@@ -20,12 +21,4 @@ describe('PostGridComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should create 100 posts', () => {
-    console.log(component.postComponents);
-    
-    expect(component).toBeTruthy();
-  });
-
-
 });
