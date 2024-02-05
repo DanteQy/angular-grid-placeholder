@@ -21,5 +21,11 @@ describe('PostGridComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  
+  it('should create 100 posts', () => {
+    console.log(component.postComponents);
+    
+    expect(component).toBeTruthy();
+  });
+
+
 });

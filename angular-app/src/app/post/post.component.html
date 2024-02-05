@@ -1,4 +1,8 @@
-<div tabindex="0" class="aspect-w-1 aspect-h-1 p-4 text-white text-center cursor-pointer overflow-ellipsis" (click)="toggleContent()" role="button" aria-label="Toggle Content">
+<div tabindex="0" class="aspect-w-1 aspect-h-1 p-4 text-white text-center cursor-pointer overflow-ellipsis" 
+(keydown)="toggleContent()" 
+(click)="toggleContent()" 
+role="button" 
+aria-label="Toggle Content">
   <div class="grid-item-content" attr.aria-label="{{post?.title}}" title="{{post?.title}}">
     {{ displayContent }}
   </div>

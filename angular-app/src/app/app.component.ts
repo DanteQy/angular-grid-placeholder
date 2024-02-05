@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Post } from './models/post.interface';
 import { Store, select } from '@ngrx/store';
 import { PostGridComponent } from './post-grid/post-grid.component';

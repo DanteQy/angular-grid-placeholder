@@ -4,8 +4,9 @@
     [post]="post"
     class="grid-item"
     (click)="resetPreviousPost($event, post.id)"
+    (keydown)="resetPreviousPost($event, post.id)"
     role="gridcell"
-    aria-label="Post Item"
+    attr.aria-label="Post Item {{post?.id}}"
     [attr.tabindex]="i === 0 ? 0 : -1"
   ></app-post>
 </div>

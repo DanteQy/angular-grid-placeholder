@@ -1,5 +1,4 @@
-// post.component.ts
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Post } from '../models/post.interface';
 import { Store, select } from '@ngrx/store';
 import { setData } from '../state/actions/post.action';
@@ -12,7 +11,7 @@ import { Observable } from 'rxjs';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
   @Input() post!: Post | undefined;
   selectedPostId$!: Observable<number>;
 

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { PostComponent } from '../post/post.component';
 import { CommonModule } from '@angular/common';
 import { Store, select } from '@ngrx/store';
@@ -16,7 +16,7 @@ import {
   templateUrl: './post-grid.component.html',
   styleUrl: './post-grid.component.css',
 })
-export class PostGridComponent {
+export class PostGridComponent implements OnInit{
   @ViewChildren(PostComponent) postComponents!: QueryList<PostComponent>;
   posts$!: Observable<Post[]>;
   isLoading$!: Observable<boolean>;
@@ -45,6 +45,5 @@ export class PostGridComponent {
 
     // Update the previous post ID with the current post ID
     this.previousPostId = postId;
-
   }
 }
