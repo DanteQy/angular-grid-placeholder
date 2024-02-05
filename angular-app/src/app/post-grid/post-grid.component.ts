@@ -1,12 +1,16 @@
-import { ChangeDetectorRef, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { PostComponent } from '../post/post.component';
 import { CommonModule } from '@angular/common';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { Post } from '../models/post.interface';
-import {
-  selectPostsList
-} from '../state/selector/post.selector';
+import { selectPostsList } from '../state/selector/post.selector';
 
 @Component({
   selector: 'app-post-grid',
@@ -15,7 +19,7 @@ import {
   templateUrl: './post-grid.component.html',
   styleUrl: './post-grid.component.css',
 })
-export class PostGridComponent implements OnInit{
+export class PostGridComponent implements OnInit {
   @ViewChildren(PostComponent) postComponents!: QueryList<PostComponent>;
   posts$!: Observable<Post[]>;
   private previousPostId: number | null = null;
@@ -26,15 +30,18 @@ export class PostGridComponent implements OnInit{
     this.posts$ = this.store.pipe(select(selectPostsList));
   }
 
+  /**
+   * Finds the previous post selected and calls its function to reset it to the default displauy
+   */
   resetPreviousPost(e: Event, postId: number): void {
     e.preventDefault();
     // Find the PostComponent for the previous post
     const previousPostComponent = this.postComponents.find(
       (component) => component.post?.id === this.previousPostId
     );
-    
+
     // Reset the previous post if found
-    if (previousPostComponent && (this.previousPostId !== postId)) {
+    if (previousPostComponent && this.previousPostId !== postId) {
       previousPostComponent.resetToDefault();
       this.cdr.detectChanges();
       this.cdr.markForCheck();

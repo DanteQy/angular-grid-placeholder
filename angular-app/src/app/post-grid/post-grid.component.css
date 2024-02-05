@@ -1,24 +1,23 @@
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(10, minmax(0, 2fr)); 
-    gap: 1rem;
-  }
-  
-  .grid-item {
-    border: 1px solid #C8D5B9;
-    padding: 0.3rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    box-sizing: border-box; 
-  }
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 2fr));
+  gap: 1rem;
+}
 
-  .grid-item:hover,
-  .grid-item:focus {
-    background-color: #C8D5B9;
-    outline: none; 
-  }
+.grid-item {
+  border: 1px solid #c8d5b9;
+  padding: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-sizing: border-box;
+}
 
-  .grid-item:focus {
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
-  }
-  
+.grid-item:hover,
+.grid-item:focus {
+  background-color: #c8d5b9;
+  outline: none;
+}
+
+.grid-item:focus {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}

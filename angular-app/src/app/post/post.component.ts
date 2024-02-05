@@ -47,6 +47,9 @@ export class PostComponent implements OnInit {
     }
   }
 
+  /**
+   * Readies the content to be displayed based on the current rotation index
+   */
   setDisplayContent() {
     if (this.post) {
       const currentProperty = this.propertyRotation[this.currentPropertyIndex];
@@ -55,6 +58,9 @@ export class PostComponent implements OnInit {
     }
   }
 
+  /**
+   * function to be called from father component to reset to default condition when unselected
+   */
   resetToDefault(): void {
     // Check if already in the default state before resetting
     if (this.currentPropertyIndex !== 0) {

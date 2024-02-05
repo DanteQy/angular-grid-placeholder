@@ -1,5 +1,6 @@
 import { Post } from "../models/post.interface";
 import { PostState } from "../state/post.state";
+
 export const postsListMock: Post[] = [
     {
         userId: 1,

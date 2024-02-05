@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
     this.selectedPostId$.pipe(
       tap((id) => {
-        // Update title when the selectedPostId changes
+        // Update title string when the selectedPostId changes
         this.title = id > 0 ? `Selected Post ID: ${id}` : 'No Post selected';
       })
     ).subscribe();

@@ -9,10 +9,9 @@ describe('PostGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PostGridComponent, StoreModule.forRoot({})]
-    })
-    .compileComponents();
-    
+      imports: [PostGridComponent, StoreModule.forRoot({})],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(PostGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

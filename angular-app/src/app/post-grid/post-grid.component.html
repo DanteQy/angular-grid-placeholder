@@ -2,9 +2,9 @@
   <app-post
     *ngFor="let post of posts$ | async; let i = index"
     [post]="post"
-    class="grid-item"
     (click)="resetPreviousPost($event, post.id)"
     (keydown)="resetPreviousPost($event, post.id)"
+    class="grid-item"
     role="gridcell"
     attr.aria-label="Post Item {{post?.id}}"
     [attr.tabindex]="i === 0 ? 0 : -1"
