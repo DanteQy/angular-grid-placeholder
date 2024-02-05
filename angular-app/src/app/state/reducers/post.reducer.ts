@@ -1,5 +1,4 @@
 import { Action, createReducer, on } from '@ngrx/store';
-
 import { PostState } from '../post.state';
 import { getPosts, getPostsSuccess, setData } from '../actions/post.action';
 
@@ -25,7 +24,10 @@ const reducer = createReducer<PostState>(
             posts
         };
     }),
-    on(setData, (state, { selectedPostId }) => ({ ...state, selectedPostId }))
+    on(setData, (state, { selectedPostId }) => ({
+         ...state, 
+         selectedPostId 
+        }))
 );
 
 export function postsReducer(state = initialPostsState, actions: Action): PostState {

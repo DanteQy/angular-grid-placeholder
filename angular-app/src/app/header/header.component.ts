@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
   constructor(private readonly store: Store<{ selectedPostId: number }>) {}
 
   ngOnInit() {
-    // Subscribe to the selectedPostId$ observable
     this.selectedPostId$ = this.store.pipe(select(selectSelectedPostId));
 
     this.selectedPostId$.pipe(

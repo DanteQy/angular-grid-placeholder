@@ -1,3 +1,4 @@
+// post.component.ts
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { Post } from '../models/post.interface';
 import { Store, select } from '@ngrx/store';
@@ -25,10 +26,17 @@ export class PostComponent {
     private cdr: ChangeDetectorRef
   ) {}
 
+  /**
+   * Sets up the initial display content.
+   */
   ngOnInit() {
     this.setDisplayContent();
   }
 
+  /**
+   * Toggles the content to the next property in rotation.
+   * Dispatches an action to set the selected post ID.
+   */
   toggleContent() {
     if (this.post) {
       this.store.dispatch(setData({ selectedPostId: this.post.id }));
@@ -48,9 +56,12 @@ export class PostComponent {
     }
   }
 
-  resetToDefault(): void {    
-    this.currentPropertyIndex = 0;
-    this.setDisplayContent();
-    this.cdr.detectChanges();
+  resetToDefault(): void {
+    // Check if already in the default state before resetting
+    if (this.currentPropertyIndex !== 0) {
+      this.currentPropertyIndex = 0;
+      this.setDisplayContent();
+      this.cdr.detectChanges();
+    }
   }
 }

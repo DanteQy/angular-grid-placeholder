@@ -1,0 +1,25 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .grid-item {
+    border: 1px solid #FAF3DD;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #FAF3DD;
+    transition: background-color 0.3s;
+    overflow: hidden;
+  }
+  
+  .grid-item:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .grid-item-content {
+    max-height: 100px; 
+    overflow-y: auto;
+  }
+  

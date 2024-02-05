@@ -1,5 +1,9 @@
 .header-container {
-    background-color: #3490dc;
-    color: #ffffff;
+    background-color: #696D7D;
+    color: #FAF3DD;
     padding: 10px;
+  }
+
+  div {
+    background-color: #68B0AB;
   }

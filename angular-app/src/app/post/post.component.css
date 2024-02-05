@@ -1,5 +1,33 @@
-div {
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 150px); /* Adjust the width as needed */
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .grid-item {
+    border: 1px solid #68B0AB;
+    width: 100px; /* Same as the grid column width */
+    height: 100px; /* Adjust the height as needed */
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #685e5e;
+    transition: background-color 0.3s;
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
+  }
+  
+  .grid-item:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .grid-item-content {
+    max-height: 100px; 
+    overflow-y: auto;
+  }
+
+  div {
+    height: 100%;
+    background-color: #8FC0A9;
+  }
+
+  

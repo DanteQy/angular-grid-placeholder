@@ -1,7 +1,11 @@
-<div class="grid grid-cols-10 gap-4">
-  <app-post 
-    id="{{post.id}}" 
+<div role="grid" class="grid-container">
+  <app-post
+    *ngFor="let post of posts$ | async; let i = index"
+    [post]="post"
+    class="grid-item"
     (click)="resetPreviousPost($event, post.id)"
-    *ngFor="let post of posts$ | async" 
-    [post]="post"></app-post>
+    role="gridcell"
+    aria-label="Post Item"
+    [attr.tabindex]="i === 0 ? 0 : -1"
+  ></app-post>
 </div>
